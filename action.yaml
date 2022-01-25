@@ -9,10 +9,6 @@ inputs:
     description: version of the release
     required: false
     default: "latest"
-  environments:
-    description: List of refs
-    required: true  
-    default: "sitref,stagingref,mtluatref,awsref"
   github_token:
     description: Github access token to the repository
     required: true
@@ -20,7 +16,7 @@ inputs:
 
 outputs:
   artifact_name:
-    description: The name of the downloaded file 
+    description: The name of the downloaded artifact 
   result:
     description: The state of the action, if the file could be downloaded successfully
 
@@ -30,7 +26,6 @@ runs:
   args:
     - ${{ inputs.repository }}
     - ${{ inputs.release }}
-    - ${{ inputs.environments }}
     - ${{ inputs.github_token }}
 branding:
   icon: "download-cloud"
