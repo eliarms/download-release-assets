@@ -31,17 +31,6 @@ jobs:
     needs: tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-     
-      - name: Install Dependencies
-        run: npm ci
-        env:
-          CI: true
-
-      - name: ZIP Assets
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: zip -r gh-download-release.zip ./ -x "/*node_modules/*" 
-
       - name: Create a release
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: npx semantic-release
