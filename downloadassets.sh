@@ -24,9 +24,21 @@ AUTH="Authorization: token ${INPUT_GITHUB_TOKEN}"
 response=$(curl -sH "$AUTH" https://api.github.com/repos/${OWNER_REPOSITORY}/releases/${INPUT_RELEASE})
 id=`echo "$response" | jq '.assets[0] .id' |  tr -d '"'`
 name=`echo "$response" | jq '.assets[0] .name' |  tr -d '"'`
+
+if [ -z "$id" ]; then
+  echo "ERROR: version not found $INPUT_RELEASE"
+  echo "::set-output name=result::failure"
+  exit 1;
+fi;
+if [ "$id" = "null" ]; then
+  echo "ERROR: Artifact not found in version $INPUT_RELEASE"
+  echo "::set-output name=result::failure"
+  exit 2;
+fi;
+
+
 GH_ASSET="https://api.github.com/repos/${OWNER_REPOSITORY}/releases/assets/$id"
 # download the artifact     
 curl -v -L -o "$name" -H "$AUTH" -H 'Accept: application/octet-stream' "$GH_ASSET"
-
-echo "::set-output name=artifact_name::success"
+echo "::set-output name=artifact_name::"$name"
 echo "::set-output name=result::success"
