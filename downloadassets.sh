@@ -30,15 +30,10 @@ if [ -z "$id" ]; then
   echo "::set-output name=result::failure"
   exit 1;
 fi;
-if [ "$id" = "null" ]; then
-  echo "ERROR: Artifact not found in version $INPUT_RELEASE"
-  echo "::set-output name=result::failure"
-  exit 2;
-fi;
 
 
 GH_ASSET="https://api.github.com/repos/${OWNER_REPOSITORY}/releases/assets/$id"
 # download the artifact     
 curl -v -L -o "$name" -H "$AUTH" -H 'Accept: application/octet-stream' "$GH_ASSET"
-echo "::set-output name=artifact_name::"$name"
+echo "::set-output name=artifact_name::$name"
 echo "::set-output name=result::success"
