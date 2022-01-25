@@ -15,9 +15,10 @@ jobs:
       - uses: actions/checkout@master
       - name: Self test
         id: selftest
-
         # Put your action repo here
         uses: eliarms/download-release-assets@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check outputs
         run: |
