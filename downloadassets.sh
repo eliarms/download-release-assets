@@ -26,8 +26,7 @@ id=`echo "$response" | jq '.assets[0] .id' |  tr -d '"'`
 name=`echo "$response" | jq '.assets[0] .name' |  tr -d '"'`
 
 if [ -z "$id" ]; then
-  echo "ERROR: version not found $INPUT_RELEASE"
-  echo "::set-output name=result::failure"
+  echo "::set-output name=result::ERROR: version not found $INPUT_RELEASE"
   exit 1;
 fi;
 
