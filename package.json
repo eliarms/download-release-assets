@@ -1,0 +1,49 @@
+{
+  "name": "download-release-assets",
+  "version": "1.0.0",
+  "description": "This action downloads an Asset from a private repo Github release.",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.0.1",
+    "semantic-release": "^19.0.2"
+  },
+  "scripts": {
+    "commit": "git-cz",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliarms/download-release-assets.git"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
+            {
+              "path": "gh-download-release.zip.zip",
+              "label": "gh-download-release.zip(zip)"
+            }
+          ]
+        }
+      ]
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "keywords": [],
+  "author": "EMMANUEL ELIASON ARMSTRONG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eliarms/download-release-assets/issues"
+  },
+  "homepage": "https://github.com/eliarms/download-release-assets#readme"
+}
