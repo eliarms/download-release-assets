@@ -22,7 +22,7 @@ jobs:
 
       - name: Check outputs
         run: |
-          test "${{ steps.selftest.outputs.result }}" == "Hello world"
+          test "${{ steps.selftest.outputs.result }}" == "success"
         shell: bash
 
   build:
