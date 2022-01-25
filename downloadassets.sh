@@ -30,9 +30,6 @@ if [ -z "$id" ]; then
   echo "::set-output name=result::failure"
   exit 1;
 fi;
-if [ "$id" = "null" ]; then
-  echo "::set-output name=result::ERROR: Artifact not found in version $INPUT_RELEASE"
-fi;
 
 
 GH_ASSET="https://api.github.com/repos/${OWNER_REPOSITORY}/releases/assets/$id"
