@@ -7,8 +7,8 @@ RUN	apk add --no-cache \
   wget \
   jq
 
-COPY download_release_assets.sh /download_release_assets.sh
-RUN chmod +x /download_release_assets.sh
+COPY downloadassets.sh /downloadassets.sh
+RUN chmod +x /downloadassets.sh
 
 
 ENTRYPOINT ["/downloadassets.sh"]
