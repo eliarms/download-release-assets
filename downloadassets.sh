@@ -31,9 +31,7 @@ if [ -z "$id" ]; then
   exit 1;
 fi;
 if [ "$id" = "null" ]; then
-  echo "ERROR: Artifact not found in version $INPUT_RELEASE"
-  echo "::set-output name=result::failure"
-  exit 2;
+  echo "::set-output name=result::ERROR: Artifact not found in version $INPUT_RELEASE"
 fi;
 
 
